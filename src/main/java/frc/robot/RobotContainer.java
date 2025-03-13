@@ -57,13 +57,14 @@ public class RobotContainer {
 
     // Set default drive command
     if (IOConstants.kTestMode) {
+      // Always in slow mode
       m_drive.setDefaultCommand(
           new Drive(
               m_drive,
               m_controller::getLeftX,
               m_controller::getLeftY,
               () -> -m_controller.getRightX(),
-              () -> m_controller.rightBumper().getAsBoolean(),
+              () -> true,
               Optional.empty()));
     } else {
       m_drive.setDefaultCommand(
